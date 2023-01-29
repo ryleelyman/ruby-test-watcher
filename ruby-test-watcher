@@ -8,9 +8,4 @@ $stderr.write usage and exit(1) unless directory
 directory = directory.gsub('^~', "#{Dir.home}")
 $stderr.write usage and exit(1) unless File.exist? directory
 
-begin
-  `bundle exec #{File.expand_path File.dirname(__FILE__)}/ruby-test-watcher.rb #{directory}`
-rescue Interrupt
-  puts ""
-  exit(0)
-end
+exec "cd #{File.expand_path File.dirname(__FILE__)} && bundle exec ruby-test-watcher.rb #{directory}"
