@@ -2,7 +2,7 @@
 require 'listen'
 directory = ARGV[0]
 listener = Listen.to(directory) do
-  $stdout.write `cd #{directory} && bundle exec rspec`
+  spawn "cd #{directory} && bundle exec rspec"
 end
 begin
   listener.start
